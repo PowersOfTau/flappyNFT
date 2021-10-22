@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Zilliqa flappyNFT</title>
+	<link rel='shortcut icon' type='image/x-icon' href='./bg/logo.png' />
+	<style type="text/css">
+
+		body {
+			/*background: linear-gradient(90deg, Red, Orange, Yellow, Green, Blue, Indigo, Violet);*/
+			background-image: url('./bg/5.jpeg');
+			background-repeat: repeat;
+			background-size: auto;
+			color: gold;
+		}
+
+		button {
+			background-color: gold;
+			color: seagreen;
+		}
+
+		#toolbar button {
+			font-size: 150%;
+		}
+
+		#loadingBox {
+			display: flex;
+			position: absolute;
+			overflow: scroll;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+			background-color: rgba(0,0,0,0.6);
+			justify-content: center;
+			align-items: center;
+		}
+
+		#gallery-container {
+			width: 60%;
+			border-width: 1px;
+			border-style: solid;
+			display: flex;
+			justify-content: center;
+			flex-flow: wrap;
+		}
+
+		#selectBirdDiv {
+			position: relative;
+			overflow-y: scroll;
+			width: 60%;
+			border-width: 1px;
+			border-style: solid;
+			display: flex;
+			justify-content: center;
+			flex-flow: wrap;
+		}
+
+		.nft-card {
+			color: black;
+			width: 200px;
+			height: 260px;
+			margin: 8px;
+			padding: 1px;
+			background-color: white;
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			border-radius: 5px;
+		}
+
+		.nft-card-id {
+			height: 10%;
+		}
+	
+		.nft-card-owner {
+			height: 10%;
+			overflow-x: scroll;
+		}
+	
+		.nft-card-img-holder {
+			width: 200px;
+			height: 80%;
+		}
+	
+		.nft-card img {
+			width: 100%;
+		}
+	
+		.HVCenter {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#header {
+			background-color: rgba(10,10,10,0.1);
+		}
+
+		button {
+			margin: 5px;
+		}
+
+		#mintbox-container {
+			display: none;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+			background-color: rgba(10,10,10,0.6);
+		}
+
+		#mintbox {
+			border:solid 1px;
+			color: wheat;
+			padding: 1%;
+		}
+
+		#cndbox-container {
+			display: none;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+			background-color: rgba(10,10,10,0.6);
+		}
+
+		#cndbox {
+			border:solid 1px;
+			color: wheat;
+			padding: 1%;
+		}
+
+		#clbox-container {
+			display: none;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+			background-color: rgba(10,10,10,0.6);
+		}
+
+		canvas {
+        		margin-left: auto;
+        		margin-right: auto;
+                border-style: solid;
+        }
+
+		#clbox {
+			border:solid 1px;
+			background-color: black;
+			color: wheat;
+			padding: 1%;
+		}		
+
+	</style>
+	<script type="text/javascript" src="./script.js"></script>
+	<script type="text/javascript" src="phaser.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+<body onload="onloadInit()">
+	<!-- Header -->
+	<div id="header">
+		<span class="header-item" style="font-size: 200%;">
+			Zilliqa flappyNFT
+		</span>
+		<span id="wallet-address-container" style="display:none;float: right;">
+			<b>
+			<span id="wallet-network-span"></span>
+			&nbsp;-&nbsp;
+			<span id="wallet-address-span"></span>
+			</b>
+		</span>
+		<span id="connect-button-container" style="float: right;justify-content: center;align-items: center;">
+			<button onclick="connectAppToWallet()">Connect Wallet</button>
+		</span>
+	</div>
+	<!-- Header -->
+
+	<!-- Toolbar -->
+	<div class="HVCenter" id="toolbar">
+		<button onclick="loadGallery(false)">All Minted FLY</button>
+		<button onclick="loadGallery(true)">My FLY</button>
+		<button onclick="loadMarket()">Market Place</button>
+		<button onclick="loadGame()">Play flappyNFT</button>
+<!-- 		<button onclick="showMintbox()">Mint</button> -->
+	</div>
+	<!-- Toolbar -->	
+
+	<!-- Gallery -->
+	<center>
+		<div id="gallery-container">
+			Fetching NFTs
+		</div>
+	</center>
+	<!-- Gallery -->
+
+	<!-- Mint Box -->
+	<div class="HVCenter" id="mintbox-container">
+		<div id="mintbox">
+			<table style="border:solid 1px;">
+				<tr>
+					<td><label>Mint NFT For</label></td>
+					<td><input type="text" id="mintnft_to" placeholder="0x1234...def"></td>
+				</tr>
+				<tr>
+					<td><label>NFT location</label></td>
+					<td><input type="text" id="mintnft_uri" placeholder="https://www..."></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<center>
+							<button id="MintNFTBtn" onclick="mintNFT()">Mint</button>
+							<button id="MintboxCloseBtn" onclick="hideMintbox()">Close</button>
+						</center>
+					</td>
+				</tr>								
+			</table>
+		</div>
+	</div>
+	<!-- Mint Box -->
+
+	<div id="loadingBox">
+		<h1>Loading.....</h1>
+	</div>
+
+</body>
+</html>
