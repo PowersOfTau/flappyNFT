@@ -8,14 +8,29 @@ var color = ["SlateBlue","coral","fuchsia","gold","grey","lime","indigo","navy",
 
 function checkWallet(){
 	if(window.zilPay){
+		if(window.zilPay.wallet.net != 'testnet'){
+			alert("Please chnage network to testnet and reload");
+			return false;
+		}
 		return true;
 	}else{
+		alert("ZilPAy wallet not found!!")
 		return false;
 	}
 }
 
 async function connectWallet(){
-	return (await window.zilPay.wallet.connect());
+	if(window.zilPay.wallet.isConnect && window.zilPay.wallet.isEnable){
+		return true;
+	}
+	console.log("inconnect wallet")
+	t = await window.zilPay.wallet.connect();
+	console.log(t)
+	if(t){
+		window.location.reload();
+	}else{
+		alert("zilPay access denied");
+	}
 }
 
 function loadContract(contractAddr){
@@ -157,8 +172,11 @@ function loadMarket(){
 
 async function connectAppToWallet(){
 	check1 = checkWallet();
+	console.log("wait for check")
 	check2 = await connectWallet();
-	if(check1 && check2){
+	console.log("check after")
+
+	if(check1 && check2){		
 		//if successful hide button and show net and address
 		document.querySelector("#wallet-address-container").style.display = "inline-block";
 		document.querySelector("#connect-button-container").style.display = "none";
@@ -168,9 +186,6 @@ async function connectAppToWallet(){
 		let currentAddress = window.zilPay.wallet.defaultAccount.bech32;
 		document.querySelector("#wallet-network-span").innerHTML = networkName;
 		document.querySelector("#wallet-address-span").innerHTML = currentAddress;
-	}else{
-		//if connection failed 
-		alert("Something went wrong connecting wallet, try again later.");
 	}
 }
 

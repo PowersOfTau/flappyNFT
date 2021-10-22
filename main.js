@@ -3,12 +3,6 @@ var mainState = {
     preload: function() { 
         game.input.mouse.capture = true;
 
-        if(window.zilPay){
-        	console.log("Zilpay ready")
-        }else{
-        	console.log("Zilpay Not ready")
-        }
-
         //generate a bird gaming spritesheet asset based on bird DNA and add into the game
         url = buildBird(ContractState.token_mds[activeBird]);
         game.load.spritesheet('bird', url, 70, 50, 40);
