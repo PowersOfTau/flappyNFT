@@ -262,11 +262,24 @@ function buyNFT(x,y,z){
 
 	//handle the promise accordingly
 	tx.then(function(a){
-		alert(`Transaction ID: ${a.ID}`);
-		alert(`Please refresh when Minted.`)
+		alert(`Transaction ID: ${a.ID} submitted. App will reload when completed.`);
+		setTimeout(trackTx,2000,a.ID);
 	});
 }
 
+async function trackTx(txId){
+	try{
+		tx = await zilPay.blockchain.getTransaction("0x"+txId);
+		if(tx.receipt){
+			alert(`Transaction complete. Transaction ${((tx.receipt.success)?"success":"failed")}. Reloading app...`);
+			location.reload();
+		}else{
+			setTimeout(trackTx,2000,txId);			
+		}
+	}catch(err){
+		setTimeout(trackTx,2000,txId);
+	}
+}
 
 function transferNFT(nftid){
 
@@ -292,7 +305,8 @@ function transferNFT(nftid){
 
 	//handle the promise accordingly
 	tx.then(function(a){
-		console.log(a);
+		alert(`Transaction ID: ${a.ID} submitted. App will reload when completed.`);
+		setTimeout(trackTx,2000,a.ID);
 	});
 }
 
@@ -337,7 +351,7 @@ function ChangeBirdMenu(){
 		md3 = parseInt("0x"+tokenMds[ownedNFT[i]][7]);
 		galleryCode += `
 		<div id="nft-${i}" class="nft-card">
-			<div class="nft-card-id HVCenter">NFT ID: ${i}&nbsp;${setBtn}</div>
+			<div class="nft-card-id HVCenter">NFT ID: ${ownedNFT[i]}&nbsp;${setBtn}</div>
 			<div class="nft-card-img-holder HVCenter">
 				${buildBrd(md1,md2,md3,i)}
 			</div>
