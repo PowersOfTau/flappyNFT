@@ -100,6 +100,7 @@ var mainState = {
 			this.zpnc = game.add.text(game.world.centerX - 90, 170, `ZilPay Not Connected`, { fontSize: '16px', fill: '#000' }); 
         	this.ConnectBtn = game.add.button(game.world.centerX - 129.75, 210, 'ConnectBtn', this.connectWallet, this, 2, 1, 0);
        	}
+        document.querySelector("#loadingBox").style.setProperty("visibility","hidden");
     },
     connectWallet: async function(){
     	a = await window.zilPay.wallet.connect();
@@ -252,6 +253,8 @@ var game;
 var color = ["SlateBlue","coral","fuchsia","gold","grey","lime","indigo","navy","OrangeRed","olive","SeaGreen","SkyBlue","crimson","teal","wheat","Sienna"];
 
 function loadGame(){
+    document.querySelector("#loadingBox").style.setProperty("visibility","visible")
+    document.querySelector("#loadingBox").innerHTML = "<h1>Loading Game....</h1>";
 
 	if(activeBird){
 		console.log("OnLoad called")
