@@ -253,10 +253,10 @@ var game;
 var color = ["SlateBlue","coral","fuchsia","gold","grey","lime","indigo","navy","OrangeRed","olive","SeaGreen","SkyBlue","crimson","teal","wheat","Sienna"];
 
 function loadGame(){
-    document.querySelector("#loadingBox").style.setProperty("visibility","visible")
-    document.querySelector("#loadingBox").innerHTML = "<h1>Loading Game....</h1>";
 
 	if(activeBird){
+        document.querySelector("#loadingBox").style.setProperty("visibility","visible")
+        document.querySelector("#loadingBox").innerHTML = "<h1>Loading Game....</h1>";
 		console.log("OnLoad called")
 		document.querySelector("#gallery-container").innerHTML = "";
 		// Initialize Phaser, and create a 400px by 490px game
