@@ -1,8 +1,10 @@
 # flappyNFT
 flappyNFT is a Blockchain based gaming and NFT project demonstrating the integration of blockchain technology and NFTs into real world game.
 
-## Live Project Link
-https://nakamotovikram.github.io/flappyNFT
+## Project Links
+
+Try out the live project here: https://nakamotovikram.github.io/flappyNFT
+Project walkthrough video: https://www.youtube.com/watch?v=Daq_VZS7ATo
 
 ## Features
 - Display all minted NFTs
