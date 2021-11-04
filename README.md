@@ -6,6 +6,11 @@ flappyNFT is a Blockchain based gaming and NFT project demonstrating the integra
 ### Try out the live project here: https://nakamotovikram.github.io/flappyNFT
 ### Project walkthrough video: https://www.youtube.com/watch?v=Daq_VZS7ATo
 
+## Project Team
+
+- Members: Nilesh, Vikram
+- Email: vikrambarandwal@gmail.com
+
 ## Features
 - Display all minted NFTs
 - Display all owned NFTs
