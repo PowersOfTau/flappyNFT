@@ -3,7 +3,7 @@ flappyNFT is a Blockchain based gaming and NFT project demonstrating the integra
 
 ## Project Links
 
-### Try out the live project here: https://nakamotovikram.github.io/flappyNFT
+### Try out the live project here: https://powersoftau.github.io/flappyNFT
 ### Project walkthrough video: https://www.youtube.com/watch?v=Daq_VZS7ATo
 
 ## Project Team
